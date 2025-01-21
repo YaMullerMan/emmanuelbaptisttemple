@@ -1,0 +1,560 @@
+/**
+ * Theme Name: ebtTheme
+ * Template:   ebtThemeParent
+ * Description: This is a (child) theme for the Emmanuel Baptist Temple website.
+ * Version: 1.0
+ * Author: Jared Muller
+ */
+
+:root {
+    --primary-red: #800A0A;
+    --medium-red: #963E31;
+    --dark-brown: #AB7B59;
+    --brown: #D4B48E;
+    --tan: #EBD9C7;
+    --black: #000000;
+    --dark-grey: #212529;
+    --medium-grey: #616262;
+    --light-grey: #CFCFCF;
+    --white: #FCFBFC;
+    --gradient-red: linear-gradient(to bottom right, #800A0A 0%, #963E31 100%);
+    --gradient-silver: linear-gradient(to bottom right, #B5B6B7 0%, #D6D6D6 100%);
+    --gradient-tan: linear-gradient(to bottom right, #AB7B59 0%, #C1A680 100%);
+    --input-background: #F4F5F7;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", sans-serif;
+    letter-spacing: 0.5px;
+}
+
+main {
+    min-height: 80vh;
+    padding-bottom: 50px;
+}
+
+/* may need to add p a {display: inline-block;} */
+section {
+    padding: 20px 0;
+}
+
+hr {
+    background-color: var(--primary-red);
+    /* width: 40%; */
+    min-width: 250px;
+    height: 2px;
+    border: none;
+    margin: 75px auto 50px auto;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    font-family: "Raleway", sans-serif;
+    display: block;
+    letter-spacing: 0.5px;
+}
+
+a.link {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p a:hover {
+    text-decoration: underline var(--dark-brown) solid 1px;
+    text-underline-offset: 3px;
+    color: var(--dark-brown);
+}
+
+a:active {
+    color: var(--dark-brown);
+}
+
+p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--dark-grey);
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+    margin: 1rem 0;
+}
+
+p.large {
+    font-size: 1.25rem;
+}
+
+p.x-large {
+    font-size: 2rem;
+}
+
+p.small {
+    font-size: 0.8rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+.hxl,
+.h1,
+.h2,
+.h3,
+.h4,
+.has-large-font-size,
+.has-medium-font-size {
+    font-family: "Cabin", sans-serif;
+    line-height: 1.2;
+    color: var(--dark-grey);
+    font-weight: 400;
+    letter-spacing: 0;
+    margin: 0.2rem 0;
+}
+
+.hxl {
+    font-size: 4rem;
+}
+
+h1,
+.h1 {
+    font-size: 3rem;
+    margin: 0.4rem 0;
+}
+
+h2,
+.h2,
+.has-large-font-size {
+    font-size: 2.5em;
+}
+
+h3,
+.h3 .has-medium-font-size {
+    font-size: 2em;
+}
+
+h4,
+.h4 {
+    font-size: 1.5em;
+}
+
+img {
+    display: block;
+}
+
+img.full-width {
+    width: 100%;
+}
+
+input {
+    background-color: var(--input-background);
+    border: none;
+    border-radius: 10px;
+    color: var(--dark-grey);
+    padding: 7px 15px;
+}
+
+label {
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+    margin: 5px;
+}
+
+:focus,
+:focus-visible {
+    outline: auto;
+}
+
+.skip-link {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: -5000px;
+    top: auto;
+    overflow: hidden;
+}
+
+.skip-link:focus {
+    position: static;
+}
+
+.page-width {
+    width: 100%;
+    max-width: 1350px;
+    padding: 0 50px;
+    margin: 0 auto;
+}
+
+.page-width-narrow {
+    width: 60%;
+    max-width: 700px;
+    min-width: 310px;
+    padding: 0 50px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 680px) {
+    .page-width {
+        padding: 30px 20px;
+    }
+}
+
+.button {
+    background: var(--gradient-red);
+    color: var(--white);
+    cursor: pointer;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    width: fit-content;
+    font-weight: 600;
+    /* margin: auto; gonna try to remove */
+    min-width: 120px;
+    text-align: center;
+    letter-spacing: 1px;
+    /* filter: drop-shadow(0px 4px 4px rgba(0, 120, 108, 0.25)); */
+    transition: transform 0.25s ease-out;
+}
+
+.button:hover {
+    /* need something */
+    color: inherit;
+    text-decoration: none;
+    transform: scale(1.03);
+}
+
+.button.left {
+    margin: 30px 0 0 0;
+}
+
+.button.silver {
+    background: var(--gradient-silver);
+}
+
+.button.tan {
+    background: var(--gradient-tan);
+}
+
+.button.outlined {
+    background: transparent;
+    border: 2px solid #800A0A;
+}
+
+/* general reusable classes */
+
+.container {}
+
+.flex {
+    display: flex;
+    gap: 20px;
+    /* may not work */
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+.left {
+    text-align: left;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.page-title-banner {
+    background: linear-gradient(to right, #D5B691 0%, #EAD7C4 100%);
+}
+
+.page-title-banner p {
+    padding: 10px;
+    color: var(--white);
+    font-weight: 500;
+    width: 85%;
+    font-size: 1.25em;
+}
+
+.heading {
+    margin: 2rem 0;
+}
+
+
+
+/*
+---------- HEADER ---------- 
+*/
+
+header {
+    /* background-color: #FCFBFC; */
+}
+
+.header-container {
+    padding: 5px 35px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo {
+    display: none;
+}
+
+.header-logo img {
+    width: 150px;
+}
+
+.nav-item {
+    margin: 0 15px;
+    display: inline-block;
+    color: var(--dark-blue);
+}
+
+.nav-active {
+    border-bottom: var(--primary-green) 2px solid;
+}
+
+.nav-item:hover {
+    text-decoration: underline var(--primary-green) solid 2px;
+    text-underline-offset: 4px;
+}
+
+.mobile-nav-open {
+    right: 0;
+}
+
+.mobile-nav-container {
+    position: fixed;
+    width: 0%;
+    height: 90%;
+    /* only needs to be 154 when admin bar is there */
+    top: 99px;
+    right: 0;
+    padding-top: 30px;
+    /* padding: 30px 70px 30px 0; */
+    background-color: #FCFBFC;
+    text-align: right;
+    z-index: 2;
+    overflow-x: hidden;
+    transition: 0.75s;
+}
+
+.mobile-nav-open {
+    /* width: 100%; */
+}
+
+.primary-menu {
+    display: flex;
+}
+
+.menu-item a {
+    padding: 10px 20px;
+    /* font-size: 0.95rem; */
+    position: relative;
+}
+
+.sub-menu {
+    padding: 10px;
+    margin: 0;
+    display: none;
+    position: absolute;
+    background-color: var(--white);
+}
+
+.sub-menu .menu-item a {
+    padding: 5px;
+}
+
+.menu-item:not(.sub-menu>.menu-item):last-of-type a {
+    background: var(--gradient-tan);
+    border-radius: 25px;
+    color: var(--white);
+}
+
+.menu-item:not(.sub-menu>.menu-item) a {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.menu-item:hover .sub-menu {
+    display: block;
+}
+
+
+
+/* ----- HOME PAGE ----- */
+.hero {
+    background: url("images/home-hero.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 40px 60px 0 60px;
+    /* min-height: 42vh; */
+    min-height: 50vh;
+}
+
+.hero h1 {
+    color: var(--brown);
+}
+
+
+/* SECTION - SERVICES */
+
+section.services {
+    padding-top: 75px;
+    padding-bottom: 125px;
+    max-width: 1200px;
+}
+
+.services .flex {
+    justify-content: space-between;
+}
+
+.services .flex-item {
+    /* padding: 20px 30px; */
+    border-radius: 10px;
+    width: 30%;
+    transition: box-shadow 0.2s;
+}
+
+.services .flex-item .button:hover {
+    /* transform: scale(1.03); */
+}
+
+.services .flex-item p {
+    margin: 15px 0 20px 0;
+    line-height: 1.5;
+}
+
+
+/* SECTION - EVENTS */
+
+section.events {
+    padding-top: 70px;
+    padding-bottom: 100px;
+    background-color: var(--input-background);
+}
+
+.events .flex {
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.events .flex-item {
+    /* padding: 20px; */
+    width: 30%;
+    transition: transform 0.2s;
+}
+
+.events .flex-item:hover .events .flex-item img {
+    transform: scale(1.03);
+}
+
+.events .flex-item p {
+    text-align: center;
+    color: var(--medium-grey);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+@media screen and (max-width: 500px) {}
+
+
+/* SECTION - MINISTRIES */
+
+section.ministries {
+    padding-top: 70px;
+    padding-bottom: 100px;
+}
+
+.ministries .flex {
+    justify-content: space-between;
+}
+
+.ministries .flex-item {
+    background-color: var(--tan);
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    display: flex;
+    padding: 20px;
+    text-align: center;
+}
+
+.ministries .flex-item img {
+    max-width: 70%;
+    max-height: 70%;
+    margin: auto;
+}
+
+.ministries .flex-item p {
+    color: var(--primary-red);
+    font-weight: 600;
+    margin: 10px 0;
+    letter-spacing: 0.75px;
+}
+
+/* SECTION - GRAPHICS */
+
+section.graphic {
+    padding: 0;
+}
+
+/* SECTION - SERMONS */
+
+.messages .flex-item img {
+    border-radius: 5px;
+}
+
+.messages.page-width {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+
+/*
+---------- FOOTER ---------- 
+*/
+
+footer {
+    background: var(--gradient-red);
+}
+
+.footer {
+    padding: 50px;
+    color: #ffffff;
+}

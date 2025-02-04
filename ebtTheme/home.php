@@ -9,7 +9,7 @@
                 preaching,<br>
                 worship,
                 and encouragement.</p>
-            <a href="/visit" class="button">VISIT</a>
+            <a href="/visit" class="button">VISIT US</a>
         </div>
     </div>
 </section>

@@ -75,7 +75,7 @@ a.link {
 }
 
 a:visited {
-    color: inherit;
+    /* color: inherit; was interefering on home page slider */
 }
 
 a:hover {

@@ -1,0 +1,58 @@
+/*  ---  Holds the styles for individual pages  ---  */
+
+/* ----- BELIEFS ----- */
+.beliefs strong {
+    font-weight: 600;
+}
+
+
+/* ----- STAFF ----- */
+.staff-items__container,
+.officer-items__container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    gap: 25px;
+}
+
+.staff-item {
+    display: flex;
+    gap: 10px;
+    width: 50%;
+}
+
+.staff-item.full {
+    width: 100%;
+}
+
+.staff-item *,
+.officer-item * {
+    margin: 5px 0;
+}
+
+.staff-item__info {
+    padding: 10px;
+}
+
+.staff-item .position,
+.officer-item .position {
+    text-transform: uppercase;
+    color: var(--primary-red);
+    font-weight: 500;
+}
+
+.staff-item .phone-email {
+    color: var(--medium-grey)
+}
+
+.officer-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 200px;
+}
+
+.officer-item.full {
+    width: 100%;
+    max-width: 800px;
+}

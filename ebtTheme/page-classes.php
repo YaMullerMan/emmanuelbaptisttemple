@@ -33,7 +33,7 @@ $posts = get_posts(array(
 
 if($posts)
 {
-    echo '<ul>';
+    echo '<ul class="classes-container">';
     foreach($posts as $post)
     {
         echo '<div class="flex-item classes">';

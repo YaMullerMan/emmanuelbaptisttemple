@@ -20,6 +20,7 @@
     --gradient-red: linear-gradient(to bottom right, #800A0A 0%, #963E31 100%);
     --gradient-silver: linear-gradient(to bottom right, #B5B6B7 0%, #D6D6D6 100%);
     --gradient-tan: linear-gradient(to bottom right, #AB7B59 0%, #C1A680 100%);
+    --gradient-light: linear-gradient(to right, #D5B691 0%, #EAD7C4 100%);
     --input-background: #F4F5F7;
 }
 
@@ -427,6 +428,10 @@ header {
     cursor: pointer;
 }
 
+summary:focus {
+    outline: none;
+}
+
 .mobile-nav-item summary::marker,
 .mobile-nav-item summary::-webkit-details-marker {
     display: none;
@@ -536,6 +541,15 @@ details.nav-details[open] summary {
     .mobile-nav-x {
         display: block;
     }
+}
+
+
+.breadcrumbs {
+    padding: 20px;
+}
+
+.breadcrumbs a {
+    display: inline-block;
 }
 
 

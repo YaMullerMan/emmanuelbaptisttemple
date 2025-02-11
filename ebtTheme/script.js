@@ -1,5 +1,3 @@
-// nav menu 
-
 // script for mobile nav functionality
 const navClose = document.getElementsByClassName('mobile-nav-x')[0];
 const navContainer = document.getElementsByClassName('mobile-nav-container')[0];
@@ -19,3 +17,15 @@ navClose.addEventListener("click", (e) => {
         navContainer.style.opacity = "0";
     }
 });
+
+const ministries = document.querySelectorAll('ministry-icon');
+if (ministries) {
+    ministries.forEach((ministry) => {
+        ministry.addEventListener("click", () => {
+            // get the data-ministry
+            // find the associated ministry content
+            // fade it to the top of the view
+            // change the BG color of the old and new active icons
+        })
+    })
+}

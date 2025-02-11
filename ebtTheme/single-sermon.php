@@ -4,24 +4,32 @@ Template Name: SERMON-SINGLE
 Template Post Type: sermon
 */ ?>
 
-<h1>Sermon</h1>
-<p class="breadcrumbs"><a href="/events">All Sermons</a> >
+<div class="page-title-banner">
+    <p class="page-width">Sermon</p>
+</div>
+
+<p class="breadcrumbs page-width"><a href="/events">All Sermons</a> >
     <?php echo get_the_title($post->ID); ?></p>
 
 <?php
-echo '<div class="sermon-container">';
+echo '<div class="sermon-container page-width">';
+echo '<div class="sermon-audio">';
 echo '<img src="' . get_field('graphic') . '" class="image">';
 echo '<audio controls>';
-    echo '<source src="' . get_field('audio_file') . '" type="audio/mp3">';
-    echo 'Your browser does not support this audio element';
+echo '<source src="' . get_field('audio_file') . '" type="audio/mp3">';
+echo 'Your browser does not support this audio element';
 echo '</audio>';
-echo '<a href="' . get_field('audio_file') . '" class="letter">Download</a>';
 echo '</div>';
-echo '<p>' . get_the_title($post->ID) . '</p>';
-echo '<p>' . get_field('date_time') . '</p>';
+echo '<div class="sermon-info">';
+echo '<p><b>Title: </b>' . get_the_title($post->ID) . '</p>';
+echo '<p><b>Speaker: </b>' . get_field('speaker') . '</p>';
+echo '<p><b>Date: </b>' . get_field('date_time') . '</p>';
+echo '<a href="' . get_field('audio_file') . '" class="letter">Download <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"/></svg></a>';
+echo '</div>';
+echo '</div>';
 ?>
 
-<section class="messages page-width">
+<section class="messages page-width" style="display: none;">
     <h2 class="heading">Recent Messages</h2>
     <div class="flex">
         <?php 

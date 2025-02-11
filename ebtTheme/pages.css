@@ -55,25 +55,151 @@
     flex-direction: column;
     justify-content: center;
     width: 200px;
+    text-align: center;
 }
 
 .officer-item.full {
     width: 100%;
+    text-align: center;
+    margin-top: 50px;
 }
 
 .officer-item.full img {
     max-width: 800px;
+    margin: auto;
+    width: 65%;
 }
 
 
 /* ----- FAQ ----- */
 details.wp-block-details {
     margin: 20px 0;
-    background-color: #dddbdb;
+    border-radius: 5px;
+}
+
+.wp-block-details summary {
     padding: 15px;
-    border-radius: 10px;
+    font-weight: 600;
+    background-color: #F4F5F7;
 }
 
 details.wp-block-details p {
+    padding: 0 15px;
+}
+
+details.wp-block-details p:last-of-type {
     margin-bottom: 0;
+    padding-bottom: 15px;
+}
+
+
+/* ----- SINGLE SERMON ----- */
+.sermon-container {}
+
+.sermon-audio {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+}
+
+.sermon-container audio {
+    width: 90%;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translate(-50%, -10%);
+}
+
+.sermon-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+
+/* ----- MISSIONARY ------ */
+.missionaries-container {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 48% 48%;
+    gap: 4%;
+}
+
+.missionary-item {
+    text-align: center;
+}
+
+.missionary-item img {
+    margin: 0 auto 10px auto;
+}
+
+.missionary-item a {
+    text-decoration: underline;
+}
+
+
+/* ----- CLASSES ----- */
+.classes-container {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+
+/* ----- GET INVOLVED ----- */
+
+.ministries-container {}
+
+.ministries-navigation {
+    padding: 25px 45px;
+    display: flex;
+    gap: 15px;
+}
+
+.ministry-icon {
+    width: 100px;
+    height: 100px;
+    background: var(--tan);
+    color: var(--primary-red);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.ministry-icon.active {
+    background-color: var(--white);
+}
+
+.ministry-icon img {
+    width: 40%;
+}
+
+.ministries-content {
+    position: relative;
+}
+
+.ministry-item {
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.25);
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.ministry-item.active {
+    z-index: 10;
+}
+
+.ministry-item-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ministry-leader {
+    width: 50px;
+    height: auto;
 }

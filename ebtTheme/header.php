@@ -53,6 +53,73 @@ error_reporting(E_ALL);
                     ?>
                 </nav>
                 <!-- not sure what this was for <p>X</p> -->
+                <div id="nav-icon4" class="mobile-nav-x">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav class="mobile-nav-container">
+                    <ul class="mobile-nav" id="trying">
+                        <li class="mobile-nav-item">
+                            <details class="nav-details">
+                                <summary>
+                                    ABOUT
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        width="40" height="40"
+                                        viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </summary>
+                                <div style="margin: 10px 25px 0 0;">
+                                    <a href="/about">ABOUT US</a>
+                                    <a href="/beliefs">BELIEFS</a>
+                                    <a href="/staff">STAFF</a>
+                                    <a href="/missionaries">MISSIONARIES</a>
+                                    <a href="faq">FAQ</a>
+                                </div>
+                            </details>
+                        </li>
+                        <li class="mobile-nav-item">
+                            <details class="nav-details">
+                                <summary>
+                                    MINISTRIES
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        width="40" height="40"
+                                        viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </summary>
+                                <a href="/get-involved">OUR MINISTRIES</a>
+                                <a href="/classes">CLASSES</a>
+                            </details>
+                        </li>
+                        <li class="mobile-nav-item"><a href="/events">EVENTS</a>
+                        </li>
+                        <li class="mobile-nav-item"><a
+                                href="/contact">CONTACT</a>
+                        </li>
+                        <li class="mobile-nav-item"><a
+                                href="/sermons">SERMONS</a>
+                        </li>
+                        <li class="mobile-nav-item"><a href="/giving">GIVING</a>
+                        </li>
+                        <li class="mobile-nav-item" style="display: none;">
+                            <?php
+                                if ( is_user_logged_in() ) {
+                                    echo '<a href="/my-account/edit-account">YOUR ACCOUNT</a>';
+                                } else {
+                                    echo '<a href="/my-account/edit-account">LOGIN</a>';
+                                } 
+                            ?>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </header>

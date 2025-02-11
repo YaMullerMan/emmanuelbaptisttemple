@@ -13,16 +13,21 @@
     flex-wrap: wrap;
     padding: 0;
     gap: 25px;
+    row-gap: 50px;
+    justify-content: center;
 }
 
 .staff-item {
     display: flex;
     gap: 10px;
     width: 48%;
+    align-items: center;
 }
 
 .staff-item.full {
     width: 100%;
+    display: grid;
+    grid-template-columns: 60% 1fr;
 }
 
 .staff-item *,
@@ -54,5 +59,21 @@
 
 .officer-item.full {
     width: 100%;
+}
+
+.officer-item.full img {
     max-width: 800px;
+}
+
+
+/* ----- FAQ ----- */
+details.wp-block-details {
+    margin: 20px 0;
+    background-color: #dddbdb;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+details.wp-block-details p {
+    margin-bottom: 0;
 }

@@ -2,7 +2,7 @@ custom-slider {
     display: block;
 }
 
-.slider__container {
+custom-slider.slider__container {
     position: relative;
     height: 37.5vw;
 }
@@ -29,6 +29,7 @@ custom-slider {
 .slider__slide.active {
     opacity: 1;
     transition: all 1s ease-out;
+    z-index: 1;
 }
 
 .slider__slide .flex-item {
@@ -49,6 +50,7 @@ custom-slider {
     display: flex;
     flex-direction: column;
     padding: 15px;
+    z-index: 2;
 }
 
 .slider__dot {

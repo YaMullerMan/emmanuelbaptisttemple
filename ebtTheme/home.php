@@ -75,13 +75,14 @@
             <p>16221 National Pike<br>
                 Hagerstown MD, 21740</p>
             <!-- make this dynamic to google or apple maps? -->
-            <a href="/visit" class="button silver">DIRECTIONS</a>
+            <a href="https://maps.apple.com/?address=16221%20US-40,%20Hagerstown,%20MD%20%2021740,%20United%20States&auid=4255441777652422849&ll=39.651317,-77.806931&lsp=9902&q=Emmanuel%20Baptist%20Temple&t=m"
+                class="button silver">DIRECTIONS</a>
         </div>
         <div class="flex-item">
             <h4>ONLINE</h4>
             <p>Livestream for every service<br>
                 Replay any service, any time</p>
-            <a href="/visit" class="button silver">SOCIAL</a>
+            <a href="/watch" class="button silver">LIVESTREAM</a>
         </div>
     </div>
 </section>
@@ -115,41 +116,28 @@
 <section class="ministries page-width">
     <h2 class="heading">Our ministries</h2>
     <div class="flex">
-        <div class="flex-item flex-center">
-            <a href="/visit" class="">
-                <img
-                    src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-bus.png">
-                <p>BUS</p>
-            </a>
-        </div>
-        <div class="flex-item flex-center">
-            <a href="/visit" class="">
-                <img
-                    src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-bus.png">
-                <p>YOUTH</p>
-            </a>
-        </div>
-        <div class="flex-item flex-center">
-            <a href="/visit" class="">
-                <img
-                    src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-bus.png">
-                <p>ESL</p>
-            </a>
-        </div>
-        <div class="flex-item flex-center">
-            <a href="/visit" class="">
-                <img
-                    src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-bus.png">
-                <p>SCHOOL</p>
-            </a>
-        </div>
-        <div class="flex-item flex-center">
-            <a href="/visit" class="">
-                <img
-                    src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-bus.png">
-                <p>MUSIC</p>
-            </a>
-        </div>
+        <?php 
+            $posts = get_posts(array(
+                'numberposts' => -1,
+                'post_type' => 'ministry',
+                'meta_key' => 'home_page',
+                'meta_value' => true,
+                // 'orderby' => 'meta_value',
+                'order' => 'ASC'
+            ));
+
+            if($posts)
+            {
+                foreach($posts as $post)
+                {
+                    // echo '<div class="flex-item flex-center"><a href="' . get_permalink($post->ID) . '">';
+                    echo '<div class="flex-item flex-center"><a href="/ministries?id=' . get_the_ID() . '">';
+                    echo '<img src="' . get_field('icon') . '">';
+                    echo '<p>' . get_the_title($post->ID) . '</p>';
+                    echo '</div>'; //</a>
+                }
+            }
+        ?>
     </div>
 </section>
 

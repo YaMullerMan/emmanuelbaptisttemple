@@ -44,10 +44,22 @@
                 <input type="hidden" name="post_type" value="sermon" />
 
                 <div class="dates">
-                    <label for="start-date">Start:</label>
-                    <input type="date" id="start-date" name="start_date">
-                    <label for="end-date">End:</label>
-                    <input type="date" id="end-date" name="end_date">
+                    <input 
+                        type="text"
+                        id="start-date"
+                        name="start_date" 
+                        placeholder="Start Date..." 
+                        onfocus="(this.type='date')"
+                        onblur="if(!this.value) this.type='text'"
+                    >
+                    <input 
+                        type="text"
+                        id="end-date"
+                        name="end_date" 
+                        placeholder="End Date..." 
+                        onfocus="(this.type='date')"
+                        onblur="if(!this.value) this.type='text'"
+                    >
                 </div>
 
                 <button type="submit" class="button silver">SEARCH</button>
@@ -67,14 +79,14 @@ if($posts)
     echo '<ul class="sermons__container" id="search-results">';
     foreach($posts as $post)
     {
-        echo '<div class="sermons__sermon">';
+        echo '<li class="sermons__sermon">';
         echo '<img src="' . get_field('graphic') . '" class="image">';
         echo '<div class="sermons__info">';
         echo '<p class="h5">' . get_the_title($post->ID) . '</p>';
         echo '<p class="sermons__details">' . get_field('date_time') . ' | ' . get_field('speaker')  . '</p>';
         echo '</div>';
         echo '<a href="' . get_permalink($post->ID) . '" class="sermons__link"></a>';
-        echo '</div>';
+        echo '</li>';
     }
     echo '</ul>';
 }

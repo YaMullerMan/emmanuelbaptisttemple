@@ -20,9 +20,11 @@ navClose.addEventListener("click", (e) => {
 
 // switching between ministries
 const ministries = document.querySelectorAll('.ministry-icon');
+// switching between ministries
+const ministries = document.querySelectorAll('.ministry-icon');
 if (ministries) {
     ministries.forEach((ministry) => {
-        ministry.addEventListener("pointerdown", (event) => {
+        ministry.addEventListener("click", (event) => {
             let currentTab = document.querySelector('.ministry-icon.active');
             let newTab = event.target.closest('.ministry-icon');
             let currentContent = document.querySelector('.ministry-item.active');
@@ -78,3 +80,10 @@ jQuery(document).ready(function ($) {
         loadSearchResults(page);
     });
 });
+
+if (window.location.href.includes('ministries/?id')) {
+    const url = new URL(window.location.href);
+    const userId = url.searchParams.get('id');
+    const target = document.querySelector(`.ministry-icon[data-ministry="${userId}"`);
+    target.click();
+}

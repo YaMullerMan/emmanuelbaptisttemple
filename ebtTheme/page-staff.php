@@ -28,7 +28,9 @@ if($posts)
             $width = " full";
         }
         echo '<div class="staff-item' . $width . '">';
-        echo '<img src="' . get_field('photo') . '">';
+        echo '<img src="' . get_field('photo') . '"';
+            if ($width !== " full") echo 'width="200"';
+        echo '>';
         echo '<div class="staff-item__info">';
         echo '<p class="h4">' . get_the_title($post->ID) . '</p>';
         echo '<p class="position">' . get_field('position') . '</p>';

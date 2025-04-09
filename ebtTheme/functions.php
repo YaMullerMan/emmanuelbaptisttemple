@@ -41,30 +41,30 @@ function custom_search_filter($query) {
 add_filter('pre_get_posts', 'custom_search_filter');
 
 // include the metafields of the custom post types
-function custom_search_include_meta($search, $query) {
-    if ($query->is_search() && !is_admin() && $query->is_main_query()) {
-        global $wpdb;
+// function custom_search_include_meta($search, $query) {
+//     if ($query->is_search() && !is_admin() && $query->is_main_query()) {
+//         global $wpdb;
 
-        // Get the search query
-        $search_term = esc_sql($query->get('s'));
+//         // Get the search query
+//         $search_term = esc_sql($query->get('s'));
 
-        if (!empty($search_term)) {
-            $search = "
-                AND (
-                    ({$wpdb->posts}.post_title LIKE '%{$search_term}%')
-                    OR ({$wpdb->posts}.post_content LIKE '%{$search_term}%')
-                    OR EXISTS (
-                        SELECT * FROM {$wpdb->postmeta}
-                        WHERE {$wpdb->posts}.ID = {$wpdb->postmeta}.post_id
-                        AND {$wpdb->postmeta}.meta_value LIKE '%{$search_term}%'
-                    )
-                )
-            ";
-        }
-    }
-    return $search;
-}
-add_filter('posts_search', 'custom_search_include_meta', 10, 2);
+//         if (!empty($search_term)) {
+//             $search = "
+//                 AND (
+//                     ({$wpdb->posts}.post_title LIKE '%{$search_term}%')
+//                     OR ({$wpdb->posts}.post_content LIKE '%{$search_term}%')
+//                     OR EXISTS (
+//                         SELECT * FROM {$wpdb->postmeta}
+//                         WHERE {$wpdb->posts}.ID = {$wpdb->postmeta}.post_id
+//                         AND {$wpdb->postmeta}.meta_value LIKE '%{$search_term}%'
+//                     )
+//                 )
+//             ";
+//         }
+//     }
+//     return $search;
+// }
+// add_filter('posts_search', 'custom_search_include_meta', 10, 2);
 
 
 
@@ -76,6 +76,15 @@ function ajax_search_results() {
 
     $meta_query = array(); // Initialize meta query array
 
+    // if text search query is empty, return all posts
+    if (empty($_POST['s'])) {
+        $meta_query[] = array(
+            'key'     => 'date_time',
+            'value'   => array($start_date . ' 00:00:00', $end_date . ' 23:59:59'),
+            'compare' => 'BETWEEN',
+        );
+    }
+    
     // Add date range filters if both dates are provided
     if (!empty($start_date) && !empty($end_date)) {
         $meta_query[] = array(
@@ -112,13 +121,15 @@ function ajax_search_results() {
         while ($search_query->have_posts()) {
             $search_query->the_post();
             ?>
-<div class="search-result-item">
-    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-    <p><?php the_excerpt(); ?></p>
-    <p><strong>Date:</strong>
-        <?php echo get_post_meta(get_the_ID(), 'date_time', true); ?></p>
-</div>
-<?php
+            <li class="sermons__sermon">
+                <img src="<?php echo get_field('graphic'); ?>" class="image">
+                <div class="sermons__info">
+                    <p class="h5"> <?php echo get_the_title($post->ID) ?></p>
+                    <p class="sermons__details"><?php echo get_field('date_time') . ' | ' . get_field('speaker'); ?></p>
+                </div>
+                <a href="<?php get_permalink($post->ID) ?>" class="sermons__link"></a>
+            </li>
+        <?php   
         }
 
         // Pagination
@@ -131,7 +142,7 @@ function ajax_search_results() {
             echo '</div>';
         }
     } else {
-        echo "<p>No results found.</p>";
+        echo '<p>No results found. <a href="'.home_url().'/sermons" style="display: inline-block; text-decoration: underline;">Back to Sermons</a></p>';
     }
 
     wp_die();
@@ -150,3 +161,13 @@ function register_footer_menu() {
     register_nav_menu('footer-menu', __('Footer Menu'));
 }
 add_action('init', 'register_footer_menu');
+
+// remove certain admin items for certain user IDs
+function remove_plugin_admin_menu() {
+    $allowed_user = 1;
+    if (get_current_user_id() !== $allowed_user) {
+        remove_menu_page('edit.php?post_type=wpstream_product');
+        remove_menu_page('edit.php?post_type=wpstream_product_vod');
+    }
+}
+add_action( 'admin_menu', 'remove_plugin_admin_menu', 999);

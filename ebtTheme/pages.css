@@ -30,6 +30,10 @@
     grid-template-columns: 60% 1fr;
 }
 
+.staff-item:not(.staff-item.full) img {
+    border-radius: 50%;
+}
+
 .staff-item *,
 .officer-item * {
     margin: 5px 0;
@@ -221,7 +225,7 @@ details.wp-block-details p:last-of-type {
     /* one day will make this a transition
     position: absolute; */
     background-color: #ffffff;
-    box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.1);
     padding: 25px;
     padding: 35px 50px;
     border-radius: 10px;
@@ -426,6 +430,7 @@ details.wp-block-details p:last-of-type {
 
 .dates {
     display: none;
+    margin-right: 10px;
 }
 
 #ajax-search-form div.button {
@@ -442,6 +447,8 @@ details.wp-block-details p:last-of-type {
 
 #ajax-search-form {
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
 }
 
 .ajax-pagination {
@@ -547,3 +554,8 @@ details.wp-block-details p:last-of-type {
         padding: 25px 0 50px 0;
     }
 }
+
+
+
+
+.grid.events {}

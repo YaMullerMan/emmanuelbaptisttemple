@@ -67,6 +67,10 @@ b {
     font-weight: bold;
 }
 
+b {
+    font-weight: bold;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -199,6 +203,7 @@ input[type="date"] {
     padding: 7px 15px;
     font-size: 0.9em;
     cursor: text;
+    font-weight: 300;
 }
 
 .input-with-icon {
@@ -326,6 +331,24 @@ input[type="submit"] {
     align-items: center;
 }
 
+.grid {
+    display: grid;
+    /* grid-template-columns: 50% 50%; */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.grid-3-columns {
+    grid-template-columns: 33% 33% 33%;
+}
+
+.grid-4-columns {
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.grid-item {
+    padding: 20px;
+}
+
 .hidden {
     display: none;
 }
@@ -372,19 +395,19 @@ header {
     /* background-color: #FCFBFC; */
 }
 
+.announcement-bar-text {
+    margin: 0;
+}
+
 .header-container {
-    padding: 5px 35px 20px;
+    padding: 15px 35px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.header-logo {
-    display: none;
-}
-
-.header-logo img {
-    width: 150px;
+img.custom-logo {
+    width: 160px;
 }
 
 .nav-item {
@@ -431,6 +454,12 @@ header {
     display: flex;
 }
 
+.footer-menu {
+    flex-wrap: wrap;
+    row-gap: 20px;
+    justify-content: space-evenly;
+}
+
 .menu-item a {
     padding: 10px 15px;
     /* font-size: 0.95rem; */
@@ -449,7 +478,7 @@ header {
     padding: 5px;
 }
 
-.primary-menu.menu-item:not(.sub-menu>.menu-item):last-of-type a {
+.primary-menu .menu-item:not(.sub-menu>.menu-item):last-of-type a {
     background: var(--gradient-tan);
     border-radius: 25px;
     color: var(--white);
@@ -629,8 +658,8 @@ details.nav-details[open] summary {
     background-repeat: no-repeat;
     background-position: top;
     padding: 40px 60px 0 60px;
-    /* min-height: 42vh; */
-    min-height: 50vh;
+    min-height: 38vw;
+    /* min-height: 50vh; */
 }
 
 .hero h1 {
@@ -641,8 +670,8 @@ details.nav-details[open] summary {
 /* SECTION - SERVICES */
 
 section.services {
-    padding-top: 75px;
-    padding-bottom: 125px;
+    padding-top: 100px;
+    padding-bottom: 165px;
     max-width: 1200px;
 }
 
@@ -704,8 +733,8 @@ section.events {
 /* SECTION - MINISTRIES */
 
 section.ministries {
-    padding-top: 70px;
-    padding-bottom: 100px;
+    padding-top: 100px;
+    padding-bottom: 150px;
 }
 
 .ministries .flex {
@@ -720,6 +749,11 @@ section.ministries {
     display: flex;
     padding: 20px;
     text-align: center;
+    transition: transform 0.25s ease-out;
+}
+
+.ministries .flex-item:hover {
+    transform: scale(1.03);
 }
 
 .ministries .flex-item img {
@@ -777,7 +811,7 @@ footer {
     flex-wrap: wrap;
 }
 
-.footer-right.flex {
+.footer-right .footer-right.flex {
     gap: 50px;
 }
 
@@ -789,6 +823,15 @@ footer {
     color: var(--white);
 }
 
+@media screen and (max-width: 1020px) {
+    .footer-right.flex {
+        gap: 0;
+        flex-direction: column;
+        align-items: end;
+        margin-left: auto;
+    }
+}
+
 
 
 
@@ -796,6 +839,10 @@ footer {
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 680px) {
+    .hero {
+        min-height: 40vw;
+    }
+
     .ministries .flex {
         flex-wrap: wrap;
         justify-content: center;
@@ -803,6 +850,8 @@ footer {
 
     .footer.flex {
         flex-wrap: wrap;
+        justify-content: end;
+        padding: 40px 30px;
     }
 
     .events .flex-item {

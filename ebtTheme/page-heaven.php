@@ -9,7 +9,7 @@
     <?php the_content() ?>
 </section>
 
-<a href="/contact" class="button">CONTACT</a>
+<a href="/contact" class="button" style="margin: 35px auto">CONTACT</a>
 
 <section class="messages page-width">
     <h2 class="heading">Recent Messages</h2>

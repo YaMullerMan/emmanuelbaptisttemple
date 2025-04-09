@@ -6,7 +6,7 @@
 </div>
 
 <section class="page-width">
-    <h1 class="h2">Pastoral Staff</h1>
+    <h1 class="h2 title">Pastoral Staff</h1>
     <?php
 $width = "";
 $category_id = get_cat_ID('officer');

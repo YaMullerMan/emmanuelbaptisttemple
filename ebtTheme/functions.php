@@ -22,8 +22,131 @@ add_theme_support('post-thumbnails', array(
 	'custom-post-type-name',
 ));
 
+
 /*  DISABLE GUTENBERG STYLE IN HEADER| WordPress 5.9 */
 function wps_deregister_styles() {
     wp_dequeue_style( 'global-styles' );
 }
 add_action( 'wp_enqueue_scripts', 'wps_deregister_styles', 100 );
+
+
+// search for custom post types (results go to search page)
+function custom_search_filter($query) {
+    if (!is_admin() && $query->is_search() && $query->is_main_query()) {
+        // Define custom post types to search
+        $query->set('post_type', array('sermon'));
+    }
+    return $query;
+}
+add_filter('pre_get_posts', 'custom_search_filter');
+
+// include the metafields of the custom post types
+function custom_search_include_meta($search, $query) {
+    if ($query->is_search() && !is_admin() && $query->is_main_query()) {
+        global $wpdb;
+
+        // Get the search query
+        $search_term = esc_sql($query->get('s'));
+
+        if (!empty($search_term)) {
+            $search = "
+                AND (
+                    ({$wpdb->posts}.post_title LIKE '%{$search_term}%')
+                    OR ({$wpdb->posts}.post_content LIKE '%{$search_term}%')
+                    OR EXISTS (
+                        SELECT * FROM {$wpdb->postmeta}
+                        WHERE {$wpdb->posts}.ID = {$wpdb->postmeta}.post_id
+                        AND {$wpdb->postmeta}.meta_value LIKE '%{$search_term}%'
+                    )
+                )
+            ";
+        }
+    }
+    return $search;
+}
+add_filter('posts_search', 'custom_search_include_meta', 10, 2);
+
+
+
+// do it with ajax, return results on the same page
+function ajax_search_results() {
+    $paged = isset($_POST['paged']) ? absint($_POST['paged']) : 1;
+    $start_date = isset($_POST['start_date']) ? sanitize_text_field($_POST['start_date']) : '';
+    $end_date = isset($_POST['end_date']) ? sanitize_text_field($_POST['end_date']) : '';
+
+    $meta_query = array(); // Initialize meta query array
+
+    // Add date range filters if both dates are provided
+    if (!empty($start_date) && !empty($end_date)) {
+        $meta_query[] = array(
+            'key'     => 'date_time', // Custom field key
+            'value'   => array($start_date . ' 00:00:00', $end_date . ' 23:59:59'),
+            'compare' => 'BETWEEN',
+            'type'    => 'DATETIME',
+        );
+    } elseif (!empty($start_date)) { // Filter only by start date
+        $meta_query[] = array(
+            'key'     => 'date_time',
+            'value'   => $start_date . ' 00:00:00',
+            'compare' => '>=',
+            'type'    => 'DATETIME',
+        );
+    } elseif (!empty($end_date)) { // Filter only by end date
+        $meta_query[] = array(
+            'key'     => 'date_time',
+            'value'   => $end_date . ' 23:59:59',
+            'compare' => '<=',
+            'type'    => 'DATETIME',
+        );
+    }
+
+    $search_query = new WP_Query(array(
+        'post_type'      => isset($_POST['post_type']) ? sanitize_text_field($_POST['post_type']) : 'post',
+        's'              => sanitize_text_field($_POST['s']),
+        'posts_per_page' => 5,
+        'paged'          => $paged,
+        'meta_query'     => $meta_query, // Apply date range filter
+    ));
+
+    if ($search_query->have_posts()) {
+        while ($search_query->have_posts()) {
+            $search_query->the_post();
+            ?>
+<div class="search-result-item">
+    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+    <p><?php the_excerpt(); ?></p>
+    <p><strong>Date:</strong>
+        <?php echo get_post_meta(get_the_ID(), 'date_time', true); ?></p>
+</div>
+<?php
+        }
+
+        // Pagination
+        $total_pages = $search_query->max_num_pages;
+        if ($total_pages > 1) {
+            echo '<div class="ajax-pagination">';
+            for ($i = 1; $i <= $total_pages; $i++) {
+                echo '<a href="#" class="page-link" data-page="' . $i . '">' . $i . '</a> ';
+            }
+            echo '</div>';
+        }
+    } else {
+        echo "<p>No results found.</p>";
+    }
+
+    wp_die();
+}
+add_action('wp_ajax_ajax_search', 'ajax_search_results');
+add_action('wp_ajax_nopriv_ajax_search', 'ajax_search_results');
+
+
+function enqueue_ajax_search_script() {
+    wp_enqueue_script('ajax-search', get_template_directory_uri() . '/js/script.js', array('jquery'), null, true);
+    wp_localize_script('ajax-search', 'ajaxurl', admin_url('admin-ajax.php'));
+}
+add_action('wp_enqueue_scripts', 'enqueue_ajax_search_script');
+
+function register_footer_menu() {
+    register_nav_menu('footer-menu', __('Footer Menu'));
+}
+add_action('init', 'register_footer_menu');

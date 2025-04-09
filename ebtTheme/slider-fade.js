@@ -1,4 +1,4 @@
-
+// for the home page slider
 class CustomSlider extends HTMLElement {
     constructor() {
         super();
@@ -16,8 +16,6 @@ class CustomSlider extends HTMLElement {
         this.prevButton.addEventListener('click', this.prevSlide.bind(this));
         this.addEventListener('mouseleave', this.slideStart);
         this.addEventListener('mouseenter', this.slideStop);
-
-        // make sure initial active dot and slide are set
     }
 
     makeDots() {

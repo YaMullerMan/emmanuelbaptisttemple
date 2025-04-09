@@ -18,14 +18,63 @@ navClose.addEventListener("click", (e) => {
     }
 });
 
-const ministries = document.querySelectorAll('ministry-icon');
+// switching between ministries
+const ministries = document.querySelectorAll('.ministry-icon');
 if (ministries) {
     ministries.forEach((ministry) => {
-        ministry.addEventListener("click", () => {
-            // get the data-ministry
-            // find the associated ministry content
-            // fade it to the top of the view
-            // change the BG color of the old and new active icons
+        ministry.addEventListener("pointerdown", (event) => {
+            let currentTab = document.querySelector('.ministry-icon.active');
+            let newTab = event.target.closest('.ministry-icon');
+            let currentContent = document.querySelector('.ministry-item.active');
+            let newContent = document.querySelector(`.ministry-item[data-ministry="${newTab.getAttribute("data-ministry")}"]`);
+            newTab.classList.toggle('active');
+            currentTab.classList.toggle('active');
+            newContent.classList.toggle('active');
+            currentContent.classList.toggle('active');
         })
     })
 }
+
+// for sermons page search functionality
+jQuery(document).ready(function ($) {
+    console.log('doc is ready');
+    function loadSearchResults(page = 1) {
+        console.log('load results');
+        var searchQuery = $("#ajax-search").val();
+        var postType = $("input[name='post_type']").val();
+        var startDate = $("#start-date").val();
+        var endDate = $("#end-date").val();
+
+        $.ajax({
+            url: ajaxurl,
+            type: "POST",
+            data: {
+                action: "ajax_search",
+                s: searchQuery,
+                post_type: postType,
+                paged: page,
+                start_date: startDate, // Send start date
+                end_date: endDate,     // Send end date
+            },
+            beforeSend: function () {
+                $("#search-results").html("<p>Searching...</p>");
+            },
+            success: function (response) {
+                $("#search-results").html(response);
+            },
+        });
+    }
+
+    // Handle form submission
+    $("#ajax-search-form").submit(function (e) {
+        e.preventDefault();
+        loadSearchResults(1);
+    });
+
+    // Handle pagination clicks
+    $(document).on("click", ".ajax-pagination a", function (e) {
+        e.preventDefault();
+        var page = $(this).data("page");
+        loadSearchResults(page);
+    });
+});

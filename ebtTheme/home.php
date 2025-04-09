@@ -158,7 +158,7 @@
         src="<?php echo get_stylesheet_directory_uri(); ?>/images/newtoebt.png">
 </section>
 
-<section class="messages page-width">
+<section class="messages page-width" style="display: none;">
     <h2 class="heading">Recent Messages</h2>
     <div class="flex">
         <?php 
@@ -178,6 +178,52 @@
             }
             ?>
     </div>
+</section>
+
+<section class="messages page-width">
+    <h2 class="heading">Recent Messages</h2>
+    <smooth-slider class="slider-container messages">
+        <div class="wrapper">
+            <div class="slider__container" data-id="1">
+                <div class="slides">
+                    <?php 
+                    $posts = get_posts(array(
+                        'numberposts' => 4,
+                        'post_type' => 'sermon'
+                    ));
+
+                    if($posts)
+                    {
+                        foreach($posts as $post)
+                        {
+                            echo '<div class="slide"><a href="' . get_permalink($post->ID) . '">';
+                            echo '<img src="' . get_field('graphic') . '" width="350px">';
+                            echo '</a></div>';
+                        }
+                    }
+                ?>
+                </div>
+            </div>
+            <div class="navigation">
+                <span class="backward" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                        height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </span>
+                <span class="forward" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                        height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 18l6-6-6-6" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+    </smooth-slider>
 </section>
 
 <?php get_footer(); ?>

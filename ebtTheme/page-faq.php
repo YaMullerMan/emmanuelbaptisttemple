@@ -6,7 +6,6 @@
 </div>
 
 <section class="page-width">
-    <h1>FAQ</h1>
     <?php the_content(); ?>
 </section>
 

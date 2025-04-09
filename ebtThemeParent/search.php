@@ -1,7 +1,9 @@
 <?php
 /**
  * The template for displaying search results pages
- *
+ * This is for a generic site search; 
+ * custom post type search will return on it's own page and be done with AJAX.
+ * 
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
  * @package ebtThemeParent
@@ -10,20 +12,20 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+<main id="primary" class="site-main">
 
-		<?php if ( have_posts() ) : ?>
+    <?php if ( have_posts() ) : ?>
 
-			<header class="page-header">
-				<h1 class="page-title">
-					<?php
+    <header class="page-header">
+        <h1 class="page-title">
+            <?php
 					/* translators: %s: search query. */
 					printf( esc_html__( 'Search Results for: %s', 'ebtthemeparent' ), '<span>' . get_search_query() . '</span>' );
 					?>
-				</h1>
-			</header><!-- .page-header -->
+        </h1>
+    </header><!-- .page-header -->
 
-			<?php
+    <?php
 			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();
@@ -46,7 +48,7 @@ get_header();
 		endif;
 		?>
 
-	</main><!-- #main -->
+</main><!-- #main -->
 
 <?php
 get_sidebar();

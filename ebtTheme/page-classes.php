@@ -5,8 +5,8 @@
     <p class="page-width">Classes</p>
 </div>
 
-<section class="page-width">
-    <h2>Find your class</h2>
+<section class="page-width classes">
+    <h1 class="h2 title">Find your class</h1>
     <p>Use the categories above to jump to a class or scroll down through to see
         all of our available classes that meet every Sunday morning at 9:45am.
         With every class our goal is for it to be a smaller, intimate group of
@@ -14,9 +14,13 @@
         forms of Bible study, prayer time, and sometimes breakfast! Below you
         will find a short description of each class, pictures, teacher contact
         info and current series.</p>
-    <div class="flex">
+    <div class="flex categories" id="categories">
         <p class="flex-item">Married couples</p>
-        <p class="flex-item">Married couples</p>
+        <p class="flex-item">Young adults</p>
+        <p class="flex-item">Men</p>
+        <p class="flex-item">Women</p>
+        <p class="flex-item">Spanish</p>
+        <p class="flex-item">New believer</p>
     </div>
 </section>
 
@@ -36,11 +40,13 @@ if($posts)
     echo '<ul class="classes-container">';
     foreach($posts as $post)
     {
-        echo '<div class="flex-item classes">';
-        echo '<h3>' . get_the_title($post->ID) . '</h3>';
+        echo '<div class="flex">';
         echo '<img src="' . get_field('graphic') . '" class="image">';
-        echo '<p>' . get_field('teacher_name') . '</p>';
+        echo '<div class="">';
+        echo '<h3>' . get_the_title($post->ID) . '</h3>';
+        echo '<p><b>' . get_field('teacher_name') . '</b></p>';
         echo '<p>' . get_field('description') . '</p>';
+        echo '</div>';
         echo '</div>';
     }
     echo '</ul>';

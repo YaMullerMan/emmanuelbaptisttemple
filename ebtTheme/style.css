@@ -63,6 +63,10 @@ ul {
     margin: 0;
 }
 
+b {
+    font-weight: bold;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -114,15 +118,21 @@ p.small {
     font-size: 0.8rem;
 }
 
+ul {
+    padding: 0;
+}
+
 h1,
 h2,
 h3,
 h4,
+h5,
 .hxl,
 .h1,
 .h2,
 .h3,
 .h4,
+.h5,
 .has-large-font-size,
 .has-medium-font-size {
     font-family: "Cabin", sans-serif;
@@ -159,6 +169,16 @@ h4,
     font-size: 1.5em;
 }
 
+h5,
+.h5 {
+    font-size: 1.2em;
+}
+
+.title {
+    text-align: center;
+    margin: 50px 0;
+}
+
 img {
     display: block;
 }
@@ -167,12 +187,34 @@ img.full-width {
     width: 100%;
 }
 
-input {
+.input,
+input,
+input[type="text"],
+input[type="search"],
+input[type="date"] {
     background-color: var(--input-background);
     border: none;
     border-radius: 10px;
     color: var(--dark-grey);
     padding: 7px 15px;
+    font-size: 0.9em;
+    cursor: text;
+}
+
+.input-with-icon {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.input-with-icon input {
+    padding-left: 40px;
+}
+
+.input-with-icon .icon {
+    position: absolute;
+    top: 9px;
+    left: 12px;
 }
 
 label {
@@ -218,9 +260,15 @@ label {
     .page-width {
         padding: 30px 20px;
     }
+
+    .title {
+        text-align: center;
+        margin: 25px 0;
+    }
 }
 
-.button {
+.button,
+input[type="submit"] {
     background: var(--gradient-red);
     color: var(--white);
     cursor: pointer;
@@ -230,6 +278,7 @@ label {
     outline: none;
     width: fit-content;
     font-weight: 600;
+    font-family: "Raleway", sans-serif;
     /* margin: auto; gonna try to remove */
     min-width: 120px;
     text-align: center;
@@ -240,7 +289,7 @@ label {
 
 .button:hover {
     /* need something */
-    color: inherit;
+    /* color: inherit; doesnt work on contact page  */
     text-decoration: none;
     transform: scale(1.03);
 }
@@ -282,7 +331,7 @@ label {
 }
 
 .visible {
-    display: block;
+    display: block !important;
 }
 
 .left {
@@ -377,17 +426,18 @@ header {
     /* width: 100%; */
 }
 
-.primary-menu {
+.primary-menu,
+.footer-menu {
     display: flex;
 }
 
 .menu-item a {
-    padding: 10px 20px;
+    padding: 10px 15px;
     /* font-size: 0.95rem; */
     position: relative;
 }
 
-.sub-menu {
+.primary-menu .sub-menu {
     padding: 10px;
     margin: 0;
     display: none;
@@ -399,13 +449,16 @@ header {
     padding: 5px;
 }
 
-.menu-item:not(.sub-menu>.menu-item):last-of-type a {
+.primary-menu.menu-item:not(.sub-menu>.menu-item):last-of-type a {
     background: var(--gradient-tan);
     border-radius: 25px;
     color: var(--white);
+    margin-left: 5px;
+    padding: 7px 20px;
+    margin-top: 3px;
 }
 
-.menu-item:not(.sub-menu>.menu-item) a {
+.primary-menu .menu-item:not(.sub-menu>.menu-item) a {
     text-transform: uppercase;
     font-weight: 600;
 }
@@ -413,6 +466,21 @@ header {
 .menu-item:hover .sub-menu {
     display: block;
 }
+
+.footer-menu>li>a {
+    font-weight: 600;
+    color: var(--tan);
+    font-size: 1.25em;
+}
+
+.footer-menu .sub-menu {
+    margin-left: 0.65em;
+}
+
+.footer-menu .menu-item-has-children {
+    padding: 0 10px;
+}
+
 
 .mobile-nav-x {
     display: none;
@@ -665,6 +733,7 @@ section.ministries {
     font-weight: 600;
     margin: 10px 0;
     letter-spacing: 0.75px;
+    margin-bottom: 0;
 }
 
 /* SECTION - GRAPHICS */
@@ -684,6 +753,14 @@ section.graphic {
     padding-bottom: 25px;
 }
 
+.messages .slider__container {
+    margin: 0 auto;
+    /* padding: 25px 0 75px 0; */
+    width: 350px;
+    /* height: 235px; 37.5vw */
+    position: relative;
+}
+
 
 /*
 ---------- FOOTER ---------- 
@@ -696,6 +773,20 @@ footer {
 .footer {
     padding: 50px;
     color: #ffffff;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-right.flex {
+    gap: 50px;
+}
+
+.footer-right .footer-item {
+    text-align: right;
+}
+
+.footer-right .footer-item p {
+    color: var(--white);
 }
 
 
@@ -790,4 +881,8 @@ footer {
         margin: 2px 0;
         border: 1px solid #ffffff;
     }
+}
+
+.search__container {
+    margin: 35px 0;
 }

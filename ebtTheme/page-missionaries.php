@@ -24,8 +24,10 @@ if($posts)
         echo '<div class="missionary-item">';
         echo '<img src="' . get_field('photo') . '" class="image">';
         echo '<h3 class="h4">' . get_the_title($post->ID) . '</h3>';
-        echo '<a src="' . get_field('letter') . '" class="letter">View Letter <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"/></svg></a>';
-        echo '<p>' . get_field('country') . '</p>';
+        echo '<p class="red">' . get_field('country') . ' | ' . get_field('email') . '</p>';
+        if (get_field('letter') != null) {
+            echo '<a src="' . get_field('letter') . '" class="letter">Download update letter <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: -3px;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"/></svg></a>';
+        }
         echo '<p>' . get_field('description') . '</p>';
         echo '</div>';
     }

@@ -8,7 +8,7 @@ Template Post Type: sermon
     <p class="page-width">Sermon</p>
 </div>
 
-<p class="breadcrumbs page-width"><a href="/events">All Sermons</a> >
+<p class="breadcrumbs page-width"><a href="<?php  ?>/events">All Sermons</a> >
     <?php echo get_the_title($post->ID); ?></p>
 
 <?php

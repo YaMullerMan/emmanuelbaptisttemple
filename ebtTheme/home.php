@@ -4,7 +4,7 @@
 <section style="padding-bottom: 0;">
     <div class="hero">
         <div class="text-container page-width">
-            <h1 class="hxl">Welcome to Emmanuel</h1>
+            <h1 class="hxl" style="color: red;">Welcome to Emmanuel</h1>
             <p class="large">Join us at 10:45 every Sunday for bible
                 preaching,<br>
                 worship,
